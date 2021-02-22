@@ -1,0 +1,40 @@
+{% extends "head.html" %}
+{% block content %}
+	<section class="banner-bottom">
+		<div class="container">
+			<h3 class="tittle">{{ pro.p_name }}</h3>
+			<div class="row inner-sec">
+				<!--left-->
+				<div class="col-lg-8 left-blog-info text-left">
+          <form action="/addcart/{{ pro.id }}/" method="post">
+          {% csrf_token %}
+					<div class="blog-grid-top">
+						<div class="blog_info_left_grid mb-4" style="float:left;">
+							<img src="{{ pro.p_img.url }}" class="img-fluid" alt="" style="height:400px;width:400px;">
+						</div>
+						<h3 style="margin:0px 0px 0px 490px;" class="pt-lg-3 pl-lg-2">₹{{ pro.p_price }}</h3>
+						<p class="para my-4" style="margin:0px 0px 0px 490px;">{{ pro.p_desc }}</p>
+					{% if user.is_authenticated %}
+						<div style="margin: 0px 0px 0px 490px;">
+						<h5>Quality :</h5>
+						<br>
+						<select id="country1" onchange="change_country(this.value)" class="frm-field required sect" name="qty" style="padding:5px;">
+							<option value="1">1 Qty</option>
+							<option value="2">2 Qty</option>
+							<option value="3">3 Qty</option>
+							<option value="4">4 Qty</option>
+							<option value="5">5 Qty</option>
+						</select>
+					</div>
+					<br><br>
+					</div>
+					<input type="submit" value="Add to cart" class="mybtn">
+					{% else %}
+              <td></td>
+          {% endif %}
+          </form>
+			</div>
+		</div>
+	</section>
+
+{% endblock content %}

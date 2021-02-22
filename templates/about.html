@@ -1,0 +1,29 @@
+{% extends "header.html" %}
+{% block content %}
+<section class="banner-bottom">
+		<div class="container">
+			<h3 class="tittle">Our History</h3>
+			<div class="row inner-sec">
+				<div class="col-lg-6 about-img" data-aos="flip-right">
+					{% load static %}
+					<img src="{% static 'images/ab.jpg' %}" class="img-fluid" alt="">
+				</div>
+				<div class="col-lg-6 about-info text-left" data-aos="flip-left" >
+					<h4 class="sub-hd mb-4">We are the Best </h4>
+					<p>Chocolate Manufacturing Plant offered comes designed and developed using latest technology support so as
+					to provide for efficient working. The system comes backed by ISO & CE certificates which makes assure of 
+					reliable working. Further, these chocolate making machines also feature support of quality melting tank that
+					have electrical immersion heater as well as wears hot-water jacket of tanks for flawless performance.</p></br>
+					
+					<p>-Available in superior grade stainless steel finish or lasting performance</p>
+					<p>-Automatic performance support</p>
+					<p>-Whole process is fully automatic for flawless performance</p>
+					<p>-Can be customized as per given requirements</p>
+				
+					
+					<img src="{% static 'images/banner3.jpg' %}" class="img-fluid" alt="">
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

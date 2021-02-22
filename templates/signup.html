@@ -1,0 +1,46 @@
+{% extends "header.html" %}
+{% block content %}
+<section class="banner-bottom">
+		<div class="container">
+			<h3 class="tittle">Register Now</h3>
+			<div class="inner-sec">
+				<div class="login p-5 bg-dark mx-auto mw-100">
+					{% for msg in messages %}
+					<h3 style="color:#FFF; font-size:25px; font-weight:bold;margin: 0px 0px 0px 92px;">{{ msg }}</h3>
+					{% endfor %}
+					<form action="/dosignup/" method="post">
+						{% csrf_token %}
+						<div class="form-row">
+							<div class="col-md-6 mb-3">
+								<input type="text" class="form-control" name="username" id="validationDefault01" placeholder="Username" required="">
+							</div>
+							<div class="col-md-6 mb-3">
+								<input type="text" class="form-control" name="first" id="validationDefault02" placeholder="First Name" required="">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col-md-6 mb-3">
+								<input type="text" class="form-control" name="last" id="validationDefault01" placeholder="Last Name" required="">
+							</div>
+							<div class="col-md-6 mb-3">
+								<input type="text" class="form-control" name="email" id="validationDefault02" placeholder="EMail" required="">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col-md-6 mb-3">
+								<input type="password" class="form-control" name="password" id="password1" placeholder="Password" required="">
+							</div>
+							<div class="col-md-6 mb-3">
+								<input type="password" class="form-control" id="password2" name="cpassword" placeholder="Confirm Password" required="">
+							</div>
+
+						</div>
+						<button type="submit" class="btn btn-primary submit mb-4">Register</button>
+						<p>By clicking Register, I agree to your terms</p>
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock content %}

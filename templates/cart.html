@@ -1,0 +1,210 @@
+{% extends "head.html" %}
+{% block content %}
+<style>
+  body {
+  font-family: Arial;
+  color: #211a1a;
+  font-size: 0.9em;
+  }
+
+  #shopping-cart {
+  margin: 40px;
+  }
+
+  #product-grid {
+  margin: 40px;
+  }
+
+  #shopping-cart table {
+  width: 100%;
+  background-color: #FFF;
+  }
+
+  #shopping-cart table td {
+  background-color: #FFF;
+  font-size: 18px;
+  }
+
+  .txt-heading {
+  color: #211a1a;
+  border-bottom: 1px solid #E0E0E0;
+  overflow: auto;
+  }
+
+  #btnEmpty {
+  background-color: #ffffff;
+  border: #d00000 1px solid;
+  padding: 5px 10px;
+  color: #d00000;
+  float: right;
+  border-radius: 3px;
+  margin: 10px 0px;
+  }
+
+  .btnAddAction {
+    padding: 5px 10px;
+    margin-left: 5px;
+    background-color: #efefef;
+    text-decoration: none;g
+    border: #E0E0E0 1px solid;
+    color: #211a1a;
+    float: right;
+    text-decoration: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  #product-grid .txt-heading {
+  margin-bottom: 18px;
+  }
+
+  .product-item {
+  float: left;
+  background: #ffffff;
+  margin: 30px 30px 0px 0px;
+  border: #E0E0E0 1px solid;
+  }
+
+  .product-image {
+  height: 155px;
+  width: 250px;
+  background-color: #FFF;
+  }
+
+  .clear-float {
+  clear: both;
+  }
+
+  .demo-input-box {
+  border-radius: 2px;
+  border: #CCC 1px solid;
+  padding: 2px 1px;
+  }
+
+  .tbl-cart {
+  font-size: 15px;
+  }
+
+  .tbl-cart th {
+  font-weight: normal;
+  font-size: 22.9px;
+  }
+
+  .product-title {
+  margin-bottom: 20px;
+  }
+
+  .product-price {
+  float:left;
+  }
+
+  .cart-action {
+  float: right;
+  }
+
+  .product-quantity {
+    padding: 5px 10px;
+    border-radius: 3px;
+    border: #E0E0E0 1px solid;
+  }
+
+  .product-tile-footer {
+    padding:15px 15px 0px 15px;
+    overflow: auto;
+  }
+
+  .cart-item-image {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: #E0E0E0 1px solid;
+    padding: 5px;
+    vertical-align: middle;
+    margin-right: 15px;
+  }
+  .no-records {
+  text-align: center;
+  clear: both;
+  margin: 38px 0px;
+  }
+  .mybtnchkout
+  {
+    color: #000;
+    background: #ffc107;
+    border: 2px solid #ffc107;
+    box-sizing: border-box;
+    font-size: 17px;
+    font-weight: bold;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+    padding: 11px 30px;
+    cursor: pointer;
+    width:309px;
+    border-radius: 0px;
+  }
+  .mybtnchkout:hover{
+    color: #FFF;
+    background-color:#1cbbb4;
+    border: 2px solid #1cbbb4;
+  }
+  .myadd
+  {
+    height: 100px;
+    width: 300px;
+  }
+</style>
+<br/><br/>
+  <form action="/checkout" method="post">
+  {% csrf_token %}
+  <div id="body">
+  <div id="shopping-cart">
+    {% if pro %}
+    <div class="txt-heading" style="font-weight:bold; font-size:35px;">Shopping Cart</div>
+    <table class="tbl-cart" cellpadding="10" cellspacing="1">
+      <tbody>
+        <tr>
+          <th style="text-align:center;"></th>
+          <th style="text-align:center;" width="10%">Image</th>
+          <th style="text-align:center;">Product Name</th>
+          <th style="text-align:center;" width="10%">Price</th>
+          <th style="text-align:center;" width="10%">Quantity</th>
+          <th style="text-align:center;" width="10%">Remove</th>
+          <th style="text-align:center;" width="10%"></th>
+        </tr>
+        {% for item in pro %}
+				<tr>
+          <td style="text-align:center;"></td>
+  				<td style="text-align:center;"><img src="{{ item.p_img.url }}" class="cart-item-image" /></td>
+  				<td style="text-align:center;">{{ item.p_name }}</td>
+          <td style="text-align:center;">₹ {{ item.p_price }}</td>
+  				<td style="text-align:center;">{{ item.p_qty }}</td>
+  				<td style="text-align:center;color:#ffc107;"><a href='/removecart/{{item.id}}' style="color:#ffc107;"><i class="fa fa-trash"></i></a></td>
+  				<td align="center" colspan="2">{{item.qty}}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td colspan="2" style="text-align:center;">Grand Total</td>
+          <td align="center" colspan="2"><strong>{{add}}</strong></td>
+        </tr>
+        <tr>
+          <td colspan="2" style="text-align:center;">Address</td>
+          <td><textarea name='address' class="myadd"></textarea></td>
+          <td><a href="/checkout/" class="mybtnchkout">Checkout</a></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <br><br>
+    {% else %}
+    <div class="no-records"><h1>Your Cart is Empty</h1></div>
+    {% endif %}
+  </form>
+  </div>
+  </div>
+{% endblock content %}

@@ -1,0 +1,35 @@
+{% extends "header.html" %}
+{% block content %}
+<style>
+.zoom
+{
+ padding: 10px;
+ background-color: white;
+ transition: transform .2s; /* Animation */
+ margin: 0 auto;
+}
+.zoom:hover
+{
+  transform: scale(0.8);
+}
+</style>
+<section class="banner-bottom">
+  <div class="container">
+      <h3 class="tittle">New Arrivals</h3>
+      <div class="row inner-sec">
+          <!--forloop -->
+          {% for item in pro %}
+          <div class="col-md-4">
+              <div class="section_1_gallery_grid">
+                    <div class="section_1_gallery_grid1" style="border:solid 2px #f3ce00;">
+                          <img src="{{ item.p_img.url }}" alt=" " height="350px" width="320px" class="zoom"/>
+                    </div>
+                        <a href="/single/{{ item.id }}" class="btn btn-primary read-m" style="width:334px;">Buy Now</a></a>
+              </div>
+          </div>
+          {% endfor %}
+           <!--foorloop end -->
+      </div>
+  </div>
+</section>
+{% endblock content %}
